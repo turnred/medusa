@@ -1,7 +1,7 @@
 Medusa is a command line tool that works together with Satis to create a local
 git mirror for your composer projects.
 
-**What the hell???**
+**What the hack???**
 
 # What is Medusa, what is it good for?
 
@@ -54,7 +54,7 @@ For now, you can do the following:
         "require-all": true // if you want to also mirror the dependencies from each package
     }
 
-* run `./medusa.phar medusa.json`
+* run `./bin/medusa mirror medusa.json`
 * wait a long time
 
 During this time, medusa will first find all the dependencies you need. Then run
@@ -64,8 +64,8 @@ repodir. And finally update your satis.json file with your new config.
 * Run the satis build command: `./satis.phar build satis.json web/`
 * Once a day run:
 
-    ./medusa.phar update repos
-    ./satis.phar build satis.json web/
+    ./bin/medusa.phar update repos
+    ./vendor/bin/satis build satis.json web/
 
 To update all repos and rebuild the satis config.
 
