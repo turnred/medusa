@@ -25,12 +25,21 @@ class DependencyResolver
         while(count($deps) > 0){
             $package = array_pop($deps);
 
-            $response = $guzzle->get('/packages/'.$package.'.json')->send();
+            try {
+                $response = $guzzle->get('/packages/'.$package.'.json')->send();
+            } catch(\Exceptions $e) {
+                continue;    
+            }
+            
             $response = $response->getBody(true);
             $package = json_decode($response);
 
             if(!is_null($package)){
                 foreach($package->package->versions as $version){
+                    if (!isset($version->require)) {
+                        continue;
+                    }
+                    
                     foreach($version->require as $dependency => $version){
                         if(!in_array($dependency, $resolved) && !in_array($dependency, $deps)){
                             $deps[] = $dependency;
