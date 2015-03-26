@@ -35,6 +35,15 @@ class MirrorCommand extends Command
         $output->writeln('<info>First getting all dependencies</info>');
         $this->guzzle = new Client('http://packagist.org');
         $config = json_decode(file_get_contents($input->getArgument('config')));
+        
+        if (!file_exists($input->getArgument('config'))) {
+            $output->writeln('<error>Error</error> Given config file does not exist');
+        }
+        
+        if ($config == null) {
+            $output->writeln('<error>Error</error> Invalid JSON provided');
+        }
+        
         $repos = [];
         foreach($config->require as $dependency){
             $output->writeln(' - Getting dependencies for <info>'.$dependency.'</info>');
