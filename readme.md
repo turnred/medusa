@@ -64,8 +64,9 @@ repodir. And finally update your satis.json file with your new config.
 * Run the satis build command: `./satis.phar build satis.json web/`
 * Once a day run:
 
-    ./bin/medusa.phar update repos
-    ./vendor/bin/satis build satis.json web/
+    ./bin/medusa.phar update /path/to/your/repositories/folder
+    
+    ./vendor/bin/satis build satis.json /path/to/your/web/
 
 To update all repos and rebuild the satis config.
 
